@@ -11,10 +11,10 @@ function ActivePlugin_printLife()
 function printLife_Main(&$template)
 {
   global $zbp;
-  if (printLife_CheckExp($url, $title)) {
+  if (printLife_CheckExp($url, $title, $isExp)) {
     $script = printLife_Path("script", "host");
-    $zbp->footer .= "<!--printLife-->\n<script>const printLifeObj = {url:'{$url}',title:'{$title}'}</script>\n";
-    $zbp->footer .= "<script src=\"{$script}?v=2020-10-28\"></script>\n";
+    $zbp->footer .= "<!--printLife-->\n<script>const printLifeObj = {url:'{$url}',title:'{$title}',isExp:{$isExp}}</script>\n";
+    $zbp->footer .= "<script src=\"{$script}?v=2020-10-30\"></script>\n";
   }
 }
 /**
@@ -36,9 +36,10 @@ function printLife_UpdateTime()
  * 判断是否逾期
  * @return bool 
  */
-function printLife_CheckExp(&$url = "", &$title = "")
+function printLife_CheckExp(&$url = "", &$title = "", &$isExp = 0)
 {
   global $zbp;
+  $isExp = 0;
   $article = GetPost($zbp->Config("printLife")->article);
   if ($article->ID == 0) {
     return false;
@@ -52,6 +53,7 @@ function printLife_CheckExp(&$url = "", &$title = "")
   if ($curDayNum - $lstDayNum > $diff) {
     $article->Status = 0;
     $article->Save();
+    $isExp = 1;
     return true;
   }
   if ($zbp->Config("printLife")->strict) {

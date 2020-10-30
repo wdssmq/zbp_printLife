@@ -2,14 +2,16 @@ $(function () {
   if (window.frames.length != parent.frames.length) {
     return false;
   }
-  const strToken = zbp.cookie.get("capt_PubFeedHash");
+  const strToken = zbp.cookie.get("capt_PubFeedHash") || false;
   if (strToken) {
     return;
   }
   const cookieName = "plug_printLife";
-  const cookieValue = zbp.cookie.get(cookieName);
-  let isClosed = false;
+  const cookieValue = zbp.cookie.get(cookieName) || false;
   // const cookieValue = false;
+  if (cookieValue && !printLifeObj.isExp) {
+    return;
+  }
   layer.open({
     type: 2,
     anim: 1,
@@ -22,7 +24,6 @@ $(function () {
     success: function (layero, index) {
       if (cookieValue) {
         setTimeout(() => {
-          // !isClosed &&
           layero.slideToggle(793, function () {
             layer.min(index);
             layero.slideToggle(793);
@@ -33,7 +34,6 @@ $(function () {
       }
     },
     cancel: function (index, layero) {
-      // isClosed = true;
       if (layero.find(".layui-layer-min").is(":visible")) {
         layer.min(index);
       }
