@@ -2,24 +2,22 @@ $(function () {
   if (window.frames.length != parent.frames.length) {
     return false;
   }
-  const strToken = zbp.cookie.get("capt_PubFeedHash") || false;
-  if (strToken) {
-    return;
-  }
   const cookieName = "plug_printLife";
   const cookieValue = zbp.cookie.get(cookieName) || false;
   // const cookieValue = false;
   if (cookieValue && !printLifeObj.isExp) {
     return;
   }
+  const viewWidth = $(window).width();
+  const layerWidth = viewWidth > 1054 ? 1054 : viewWidth;
   layer.open({
     type: 2,
     anim: 1,
-    title: `${printLifeObj.title} - 首次访问请手动关闭本弹出`,
+    title: `${printLifeObj.title} - 首次访问请手动关闭本弹出→`,
     // shadeClose: true,
     shade: false,
     maxmin: true, //开启最大化最小化按钮
-    area: ["1054px", "593px"],
+    area: [`${layerWidth}px`, "593px"],
     content: printLifeObj.url,
     success: function (layero, index) {
       if (cookieValue) {
