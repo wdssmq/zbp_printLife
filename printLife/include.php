@@ -11,15 +11,16 @@ function ActivePlugin_printLife()
 function printLife_Main(&$template)
 {
   global $zbp;
+  $selector = $zbp->Config("printLife")->selector;
   if (printLife_CheckExp($url, $title, $isExp)) {
     $script = printLife_Path("script", "host");
-    $zbp->footer .= "<!--printLife-->\n<script>const printLifeObj = {url:'{$url}',title:'{$title}',isExp:{$isExp}}</script>\n";
-    $zbp->footer .= "<script src=\"{$script}?v=2020-11-04\"></script>\n";
+    $zbp->footer .= "<!--printLife-->\n<script>const printLifeObj = {url:'{$url}',title:'{$title}',isExp:{$isExp},selector:'${selector}'}</script>\n";
+    $zbp->footer .= "<script src=\"{$script}?v=2020-12-20\"></script>\n";
   }
 }
 /**
  * 更新时间到当前
- * @return none 
+ * @return none
  */
 function printLife_UpdateTime()
 {
@@ -34,7 +35,7 @@ function printLife_UpdateTime()
 }
 /**
  * 判断是否逾期
- * @return bool 
+ * @return bool
  */
 function printLife_CheckExp(&$url = "", &$title = "", &$isExp = 0)
 {

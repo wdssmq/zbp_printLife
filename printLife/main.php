@@ -58,6 +58,11 @@ require $blogpath . 'zb_system/admin/admin_top.php';
           <td>文章信息回显：<?php printLife_ViewPost(); ?></td>
         </tr>
         <tr>
+          <td>选择器</td>
+          <td><?php zbpform::text("selector", $zbp->Config("printLife")->selector, "90%"); ?></td>
+          <td>如果为空将以iframe方式调用</td>
+        </tr>
+        <tr>
           <td>严格模式</td>
           <td><?php zbpform::zbradio("strict", $zbp->Config("printLife")->strict); ?></td>
           <td>开启后将设置上述文章为草稿，直到逾期</td>
