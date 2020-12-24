@@ -22,8 +22,10 @@ $(function () {
       }
       $("#printLife").html($rlt.html()).css({
         padding: "7px",
+        overflowX: "hidden",
+        backgroundColor: "#fff",
       });
-      console.log($rlt);
+      // console.log($rlt);
     });
   }
   const selector = printLifeObj.selector;
