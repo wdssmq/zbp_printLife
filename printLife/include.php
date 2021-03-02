@@ -15,7 +15,7 @@ function printLife_Main(&$template)
   if (printLife_CheckExp($url, $title, $isExp)) {
     $script = printLife_Path("script", "host");
     $zbp->footer .= "<!--printLife-->\n<script>const printLifeObj = {url:'{$url}',title:'{$title}',isExp:{$isExp},selector:'${selector}'}</script>\n";
-    $zbp->footer .= "<script src=\"{$script}?v=2020-12-24\"></script>\n";
+    $zbp->footer .= "<script src=\"{$script}?v=2021-03-02\"></script>\n";
   }
 }
 /**
