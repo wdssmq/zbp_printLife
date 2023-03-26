@@ -1,3 +1,5 @@
+/* global printLifeObj, layer */
+
 $(function () {
   // 防止套娃弹出
   if (window.frames.length != parent.frames.length) {
@@ -48,7 +50,7 @@ $(function () {
     // shadeClose: true,
     id: layerOpt.id,
     shade: false,
-    maxmin: true, //开启最大化最小化按钮
+    maxmin: true, // 开启最大化最小化按钮
     area: [`${layerOpt.width}px`, "593px"],
     content: layerOpt.content,
     success: function (layero, index) {
