@@ -1,6 +1,6 @@
 /* global printLifeObj, layer */
 
-$(function () {
+$(function() {
   // 防止套娃弹出
   if (window.frames.length != parent.frames.length) {
     return false;
@@ -17,7 +17,7 @@ $(function () {
   function fnAjax(url, selector) {
     const filter = selector.split("--");
     // console.log(filter);
-    $.get(url, function (html) {
+    $.get(url, function(html) {
       const $rlt = $(html).find(filter[0]);
       if (filter[1]) {
         $rlt.find(filter[1]).remove();
@@ -53,10 +53,10 @@ $(function () {
     maxmin: true, // 开启最大化最小化按钮
     area: [`${layerOpt.width}px`, "593px"],
     content: layerOpt.content,
-    success: function (layero, index) {
+    success: function(layero, index) {
       if (cookieValue) {
         setTimeout(() => {
-          layero.slideToggle(793, function () {
+          layero.slideToggle(793, function() {
             layer.min(index);
             layero.slideToggle(793);
           });
@@ -65,7 +65,7 @@ $(function () {
         zbp.cookie.set(cookieName, 1, 3);
       }
     },
-    cancel: function (index, layero) {
+    cancel: function(index, layero) {
       if (layero.find(".layui-layer-min").is(":visible")) {
         layer.min(index);
       }
